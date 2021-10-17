@@ -23,7 +23,7 @@
     //car il n'y a pas de verification n'y de préparation de requete 
     //il execute directement la requete
     function getRequeteNonSecurise($nom){
-    $sql = ("select ID_User, Prenom, Nom, Email from user u where Nom = '%s'. $nom");
+    $sql = ("select ID_User, Prenom, Nom, Email from user u where user like.'".$nom."'");
     $sth = $bdd->query($sql);
     return $sth;
     }
