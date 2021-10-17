@@ -23,20 +23,19 @@
     //car il n'y a pas de verification n'y de préparation de requete 
     //il execute directement la requete
     function getRequeteNonSecurise($nom){
-    $nom = "pluchart";
-    $sql = ("select ID_USER, Prenom, Nom, Email from user u where Nom = '%s', $nom");
+    $sql = ("select ID_User, Prenom, Nom, Email from user u where Nom = '%s'. $nom");
     $sth = $bdd->query($sql);
-    var_dump($sql);
+    return $sth;
     }
 
     function getRequeteSecurise($id, $prenom, $nom, $email){
     //requête qui serra meilleur et plus sécurisé 
     // il y a une verification et un préparation de la requete
-    $sql = "select ID_USER, Prenom, Nom, Email from user u where Nom = '%s', $nom";
+    $sql = "select ID_User, Prenom, Nom, Email from user u where Nom = ?";
     //préparation de la requete
     $req = $bdd->prepare($sql);
     //verifcation de la requete
-    $result = $req->execute(array(':ID_USER' => $id, 
+    $result = $req->execute(array(':ID_User' => $id, 
                                   ':Prenom' => $prenom,
                                   ':Nom' => $nom,
                                   'Email' => $email));
